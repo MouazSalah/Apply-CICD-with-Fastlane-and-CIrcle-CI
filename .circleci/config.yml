@@ -14,9 +14,22 @@ jobs:
     docker:
       - image: cimg/base:2022.05
     steps:
+      - run: sudo apt-get install -y ruby-full
+      - run: sudo gem install bundler
+      - checkout  # Ensure your repo is checked out so you can access files in it
       - run:
-         name: fastlane
-         command: bundle exec fastlane uploadBuildToFirebase
+          name: Install Dependencies
+          command: bundle install
+      - run:
+          name: fastlane
+          command: bundle exec fastlane uploadBuildToFirebase
+#  try-second-job:
+#    docker:
+#      - image: cimg/base:2022.05
+#    steps:
+#      - run:
+#         name: fastlane
+#         command: bundle exec fastlane uploadBuildToFirebase
 
 
 workflows:
