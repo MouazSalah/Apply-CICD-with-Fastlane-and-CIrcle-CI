@@ -1,16 +1,41 @@
-# .circleci/config.yml
-
+# CircleCI configuration file
 version: 2.1
 
 jobs:
-  try-first-job:
-    macos:
-      xcode: 14.0.1
+  # Job one with a unique name
+  say_hello:
+    docker:
+      - image: cimg/base:2022.05
     steps:
-      - run: echo "I am a job name try first job within workflow named "
+      - run: echo "Say hello to YAML!"
+  # Job two with a unique name
+  say_goodbye:
+    docker:
+      - image: cimg/base:2022.05
+    steps:
+      - run: echo "Say goodbye to YAML!"
 
-
-workflow:
-  try_first_workflow:
+workflows:
+  # Name of workflow
+  hello_and_goodbye:
+    # List of jobs that will run
     jobs:
-      - try-first-job
+      - say_hello
+      - say_goodbye
+
+## .circleci/config.yml
+#
+#version: 2.1
+#
+#jobs:
+#  try-first-job:
+#    macos:
+#      xcode: 14.0.1
+#    steps:
+#      - run: echo "I am a job name try first job within workflow named "
+#
+#
+#workflow:
+#  try_first_workflow:
+#    jobs:
+#      - try-first-job
