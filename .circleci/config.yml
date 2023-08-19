@@ -2,25 +2,15 @@
 
 version: 2.1
 
-orbs:
-  ruby: circleci/ruby@1.2.0
-
 jobs:
-  build:
+  try-first-job:
     macos:
-      xcode: "13.1.0"
-    working_directory: /Users/distiller/project
-    environment:
-      FL_OUTPUT_DIR: output
-      FASTLANE_LANE: test
-    shell: /bin/bash --login -o pipefail
+      xcode: 14.0.1
     steps:
-      - checkout
-      - ruby/install-deps
-      - run:
-          name: fastlane
-          command: bundle exec fastlane uploadBuildToFirebase
-      - store_artifacts:
-          path: output
-      - store_test_results:
-          path: output/scan
+      - run: echo "I am a job name try first job within workflow named "
+
+
+workflow:
+  try_first_workflow:
+    jobs:
+      - try-first-job
