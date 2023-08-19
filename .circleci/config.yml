@@ -9,34 +9,17 @@ jobs:
     steps:
       - run: echo "I am a job name try first job within workflow named "
 
-
   try-second-job:
     docker:
-      - image: cimg/ruby:2.7 # Updated to use a Ruby-specific image
+      - image: circleci/android:api-30-node
     steps:
-      - checkout  # Ensure your repo is checked out so you can access files in it
-      - run: gem install bundler
+      - checkout
       - run:
           name: Install Dependencies
-          command: bundle install --path vendor/bundle  # Install gems to vendor/bundle in your repo
+          command: bundle install
       - run:
           name: fastlane
           command: bundle exec fastlane uploadBuildToFirebase
-
-#  try-second-job:
-#    docker:
-#      - image: cimg/base:2022.05
-#    steps:
-#      - run: sudo apt-get update
-#      - run: sudo apt-get install -y ruby
-#      - run: sudo gem install bundler
-#      - checkout  # Ensure your repo is checked out so you can access files in it
-#      - run:
-#          name: Install Dependencies
-#          command: bundle install
-#      - run:
-#          name: fastlane
-#          command: bundle exec fastlane uploadBuildToFirebase
 
 workflows:
   try_first_workflow:
