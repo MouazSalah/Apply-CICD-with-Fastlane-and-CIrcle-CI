@@ -15,17 +15,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install Java 17
-          command: |
-            sudo apt-get update
-            sudo apt-get install -y openjdk-17-jdk
-            echo 'export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"' >> $BASH_ENV
-            echo 'export PATH="$JAVA_HOME/bin:$PATH"' >> $BASH_ENV
-
-      - run:
-          name: Check Java Version
-          command: java -version
-      - run:
           name: Install Dependencies
           command: bundle install
       - run:
