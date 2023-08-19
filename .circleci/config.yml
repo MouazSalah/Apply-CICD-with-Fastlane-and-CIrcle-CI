@@ -24,5 +24,4 @@ jobs:
 workflows:
   try_first_workflow:
     jobs:
-      - try-first-job
       - try-second-job
