@@ -18,8 +18,12 @@ jobs:
           name: Install Dependencies
           command: bundle install
       - run:
+          name: Build (with JAVA_HOME set)
+          command: ./gradlew build
+      - run:
           name: fastlane
           command: bundle exec fastlane uploadBuildToFirebase
+
 
 workflows:
   try_first_workflow:
