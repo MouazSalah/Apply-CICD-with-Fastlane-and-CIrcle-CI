@@ -29,8 +29,8 @@ version: 2.1
 
 jobs:
   try-first-job:
-    macos:
-      xcode: 14.0.1
+    docker:
+      - image: cimg/base:2022.05
     steps:
       - run: echo "I am a job name try first job within workflow named "
 
