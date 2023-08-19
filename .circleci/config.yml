@@ -15,10 +15,13 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Set JAVA_HOME and PATH
+          name: Install Java 17
           command: |
-            echo 'export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home"' >> $BASH_ENV
+            sudo apt-get update
+            sudo apt-get install -y openjdk-17-jdk
+            echo 'export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"' >> $BASH_ENV
             echo 'export PATH="$JAVA_HOME/bin:$PATH"' >> $BASH_ENV
+
       - run:
           name: Check Java Version
           command: java -version
