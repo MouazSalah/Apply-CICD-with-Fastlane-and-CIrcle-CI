@@ -1,4 +1,4 @@
-## CircleCI configuration file
+### CircleCI configuration file
 #version: 2.1
 #
 #jobs:
@@ -35,7 +35,7 @@ jobs:
       - run: echo "I am a job name try first job within workflow named "
 
 
-workflow:
+workflows:
   try_first_workflow:
     jobs:
       - try-first-job
