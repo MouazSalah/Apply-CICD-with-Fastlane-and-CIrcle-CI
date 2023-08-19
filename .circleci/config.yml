@@ -15,6 +15,14 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Set JAVA_HOME and PATH
+          command: |
+            echo 'export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home"' >> $BASH_ENV
+            echo 'export PATH="$JAVA_HOME/bin:$PATH"' >> $BASH_ENV
+      - run:
+          name: Check Java Version
+          command: java -version
+      - run:
           name: Install Dependencies
           command: bundle install
       - run:
