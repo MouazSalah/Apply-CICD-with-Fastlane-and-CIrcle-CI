@@ -11,7 +11,7 @@ jobs:
 
   try-second-job:
     docker:
-      - image: circleci/android:api-30-node
+      - image: circleci/android:api-33-node
         environment:
           JAVA_HOME: "/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home"
     steps:  # <-- Add the steps key here.
