@@ -1,32 +1,54 @@
-# .circleci/config.yml
 
 version: 2.1
 
-jobs:
-  try-first-job:
-    docker:
-      - image: cimg/base:2022.05
-    steps:
-      - run: echo "I am a job name try first job within workflow named "
+orbs:
+  android: circleci/android@0.2.0
 
-  try-second-job:
-    docker:
-      - image: arvindr226/alpine-ssh
-        environment:
-          JAVA_HOME: "/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home"
-    steps:  # <-- Add the steps key here.
+jobs:
+  build:
+    executor: android/android
+
+    steps:
       - checkout
       - run:
-          name: Install Dependencies
-          command: bundle install
-      - run:
-          name: Build (with JAVA_HOME set)
           command: ./gradlew build
       - run:
-          name: fastlane
+          name: Install Fastlane
+          command: bundle install
+      - run:
+          name: Execute Fastlane
           command: bundle exec fastlane uploadBuildToFirebase
 
-workflows:
-  try_first_workflow:
-    jobs:
-      - try-second-job
+
+## .circleci/config.yml
+#
+#version: 2.1
+#
+#jobs:
+#  try-first-job:
+#    docker:
+#      - image: cimg/base:2022.05
+#    steps:
+#      - run: echo "I am a job name try first job within workflow named "
+#
+#  try-second-job:
+#    docker:
+#      - image: arvindr226/alpine-ssh
+#        environment:
+#          JAVA_HOME: "/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home"
+#    steps:  # <-- Add the steps key here.
+#      - checkout
+#      - run:
+#          name: Install Dependencies
+#          command: bundle install
+#      - run:
+#          name: Build (with JAVA_HOME set)
+#          command: ./gradlew build
+#      - run:
+#          name: fastlane
+#          command: bundle exec fastlane uploadBuildToFirebase
+#
+#workflows:
+#  try_first_workflow:
+#    jobs:
+#      - try-second-job
